@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewApp">
         <activity
+            android:name=".ui.form.input.FormInputActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
