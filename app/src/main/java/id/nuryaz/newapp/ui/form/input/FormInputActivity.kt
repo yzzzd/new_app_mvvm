@@ -135,6 +135,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
 
         //region button
         buttonSave.setOnClickListener {
+
             valueLocation = inputLocation.text.toString()
 
             val outputIntent = Intent(this, FormOutputActivity::class.java).apply {
@@ -146,7 +147,11 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
                 putExtra(Constants.INTENT.KEY_RATING, valueRating)
             }
 
-            startActivity(outputIntent)
+            val dialogSave = DialogCustomSaveFragment {
+                startActivity(outputIntent)
+            }
+            dialogSave.show(supportFragmentManager, "save")
+            //startActivity(outputIntent)
         }
         //endregion
     }
