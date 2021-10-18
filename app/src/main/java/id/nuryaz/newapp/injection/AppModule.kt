@@ -11,9 +11,8 @@ import id.nuryaz.newapp.ui.base.ViewModelFactory
 abstract class AppModule {
 
     @Binds
-    abstract fun bindContext(application: Application): Context
+    abstract fun provideContext(application: Application): Context
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
-
 }
