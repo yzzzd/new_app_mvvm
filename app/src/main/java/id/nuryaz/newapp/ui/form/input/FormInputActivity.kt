@@ -26,7 +26,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
     private lateinit var checkAcc2: CheckBox
     private lateinit var checkAcc3: CheckBox
     private lateinit var radioType: RadioGroup
-    private lateinit var ratingBar: RatingBar
+    /*private lateinit var ratingBar: RatingBar*/
     private lateinit var buttonSave: Button
 
     private var valueLocation = ""
@@ -34,7 +34,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
     private var valueTime = ""
     private var valueAccessories = ArrayList<String>()
     private var valueType = ""
-    private var valueRating = 0F
+    /*private var valueRating = 0F*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
         checkAcc2 = findViewById(R.id.check_acc2)
         checkAcc3 = findViewById(R.id.check_acc3)
         radioType = findViewById(R.id.radio_type)
-        ratingBar = findViewById(R.id.rating_bar)
+        /*ratingBar = findViewById(R.id.rating_bar)*/
         buttonSave = findViewById(R.id.btn_save)
 
         //region autocomplete
@@ -128,10 +128,10 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
         }
         //endregion
 
-        ratingBar.setOnRatingBarChangeListener { ratingBar, fl, b ->
+        /*ratingBar.setOnRatingBarChangeListener { ratingBar, fl, b ->
             Log.d("rating", "rating: $fl")
             valueRating = fl
-        }
+        }*/
 
         //region button
         buttonSave.setOnClickListener {
@@ -148,7 +148,18 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
 
             val dialogSave = DialogCustomSaveFragment {
                 outputIntent.putExtra(Constants.INTENT.KEY_RATING, it)
-                startActivity(outputIntent)
+                //startActivity(outputIntent)
+
+                viewModel.saveVisit(
+                    valueLocation,
+                    valueDate,
+                    valueTime,
+                    valueAccessories,
+                    valueType,
+                    it
+                )
+
+                finish()
             }
 
             dialogSave.show(supportFragmentManager, "save")

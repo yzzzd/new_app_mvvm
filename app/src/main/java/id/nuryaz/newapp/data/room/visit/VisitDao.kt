@@ -5,10 +5,10 @@ import androidx.room.*
 @Dao
 interface VisitDao {
     @Insert
-    fun insert(visit: Visit)
+    suspend fun insert(visit: Visit)
 
     @Query("SELECT * FROM visit")
-    fun getAll(): List<Visit>
+    suspend fun getAll(): List<Visit>
 
     @Update
     fun update(visit: Visit)

@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewApp">
         <activity
+            android:name=".ui.form.list.VisitListActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.form.output.FormOutputActivity"
             android:exported="true" />
         <activity
