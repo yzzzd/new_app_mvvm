@@ -7,6 +7,7 @@ import id.nuryaz.newapp.R
 import id.nuryaz.newapp.ui.base.BaseActivity
 import id.nuryaz.newapp.ui.form.input.FormInputActivity
 import id.nuryaz.newapp.ui.form.list.VisitListActivity
+import id.nuryaz.newapp.ui.login.LoginActivity
 
 class SplashActivity : BaseActivity<SplashViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,13 +16,13 @@ class SplashActivity : BaseActivity<SplashViewModel>() {
 
         lifecycle.addObserver(viewModel)
         observeData()
-        viewModel.delayCountDown(3000)
+        viewModel.checkToken()
     }
 
     private fun observeData() {
         viewModel.splashNotifier.observe(this, {
             if (it) {
-                val formIntent = Intent(this, VisitListActivity::class.java)
+                val formIntent = Intent(this, LoginActivity::class.java)
                 startActivity(formIntent)
                 finish()
             }

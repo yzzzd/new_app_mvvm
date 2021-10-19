@@ -4,7 +4,12 @@ import android.os.CountDownTimer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
+import id.nuryaz.newapp.api.ApiResponse
+import id.nuryaz.newapp.data.constant.Constants
 import id.nuryaz.newapp.ui.base.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import org.json.JSONObject
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor() : BaseViewModel() {
@@ -43,5 +48,36 @@ class SplashViewModel @Inject constructor() : BaseViewModel() {
                 }
             }
         }.start()
+    }
+
+    fun checkToken() {
+        if (session.accessToken.isNullOrEmpty()) {
+            getToken()
+        } else {
+            delayCountDown(3000)
+        }
+    }
+
+    private fun getToken() {
+        compositeDisposable.add(
+            apiService.oauthToken()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    val responseJson = JSONObject(it)
+                    val apiStatus = responseJson.getInt(Constants.REMOTE.API_STATUS)
+                    val apiMessage = responseJson.getJSONArray(Constants.REMOTE.API_MESSAGE)
+
+                    if (apiStatus == Constants.REMOTE.API_STATUS_SUCCESS) {
+                        val jsonObjectData = responseJson.getJSONObject(Constants.REMOTE.OBJ_DATA)
+                        session.saveAccessToken(jsonObjectData.getString("token"))
+                        delayCountDown(3000)
+                    } else {
+                        apiResponse.value = ApiResponse().responseWrong(apiMessage)
+                    }
+                }, {
+                    apiResponse.value = ApiResponse().responseError(it)
+                })
+        )
     }
 }

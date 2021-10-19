@@ -13,6 +13,7 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     AppModule::class,
     RoomModule::class,
+    NetworkModule::class,
     ActivityBuilder::class])
 interface AppComponent : AndroidInjector<DaggerApplication> {
     @Component.Builder
