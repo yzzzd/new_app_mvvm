@@ -47,9 +47,15 @@ class FormOutputActivity : BaseActivity<FormOutputViewModel>() {
 
         val listAccessories = Gson().fromJson<List<String>>(valueAccessories, object : TypeToken<List<String>>(){}.type)
         listAccessories.forEach {
-            checkAcc1.isChecked = checkAcc1.text == it
-            checkAcc2.isChecked = checkAcc2.text == it
-            checkAcc3.isChecked = checkAcc3.text == it
+            if (checkAcc1.text == it) {
+                checkAcc1.isChecked = true
+            }
+            if (checkAcc2.text == it) {
+                checkAcc2.isChecked = true
+            }
+            if (checkAcc3.text == it) {
+                checkAcc3.isChecked = true
+            }
         }
 
         radioType.children.forEach {
