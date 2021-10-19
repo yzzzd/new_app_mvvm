@@ -144,14 +144,14 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
                 putExtra(Constants.INTENT.KEY_TIME, valueTime)
                 putExtra(Constants.INTENT.KEY_ACC, Gson().toJson(valueAccessories))
                 putExtra(Constants.INTENT.KEY_TYPE, valueType)
-                putExtra(Constants.INTENT.KEY_RATING, valueRating)
             }
 
             val dialogSave = DialogCustomSaveFragment {
+                outputIntent.putExtra(Constants.INTENT.KEY_RATING, it)
                 startActivity(outputIntent)
             }
+
             dialogSave.show(supportFragmentManager, "save")
-            //startActivity(outputIntent)
         }
         //endregion
     }
