@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "596098124650",
+    "project_id": "newapp-78f1e",
+    "storage_bucket": "newapp-78f1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596098124650:android:9f945f6aa7c82aaa893313",
+        "android_client_info": {
+          "package_name": "id.nuryaz.newapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596098124650-tb1tuu7cafjadcddph5rvh650tucac6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyOOkXqV-ousUayKgkAdVKq3dkZDGO5iI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596098124650-tb1tuu7cafjadcddph5rvh650tucac6p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
