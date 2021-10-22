@@ -16,13 +16,14 @@ class SplashActivity : BaseActivity<SplashViewModel>() {
 
         lifecycle.addObserver(viewModel)
         observeData()
-        viewModel.checkToken()
+        viewModel.delayCountDown(3000)
+        //viewModel.checkToken()
     }
 
     private fun observeData() {
         viewModel.splashNotifier.observe(this, {
             if (it) {
-                val formIntent = Intent(this, LoginActivity::class.java)
+                val formIntent = Intent(this, FormInputActivity::class.java)
                 startActivity(formIntent)
                 finish()
             }

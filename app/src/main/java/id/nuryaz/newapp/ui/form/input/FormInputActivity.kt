@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import com.google.android.gms.maps.MapView
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -28,6 +29,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
     private lateinit var radioType: RadioGroup
     /*private lateinit var ratingBar: RatingBar*/
     private lateinit var buttonSave: Button
+    private lateinit var mapView: MapView
 
     private var valueLocation = ""
     private var valueDate = ""
@@ -49,6 +51,9 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
         radioType = findViewById(R.id.radio_type)
         /*ratingBar = findViewById(R.id.rating_bar)*/
         buttonSave = findViewById(R.id.btn_save)
+        mapView = findViewById(R.id.map_view)
+
+        mapView.onCreate(savedInstanceState)
 
         //region autocomplete
         val dataLocation = resources.getStringArray(R.array.location)
@@ -133,6 +138,12 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
             valueRating = fl
         }*/
 
+        //regionmap
+        mapView.getMapAsync {
+
+        }
+        //endregion
+
         //region button
         buttonSave.setOnClickListener {
 
@@ -165,5 +176,15 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
             dialogSave.show(supportFragmentManager, "save")
         }
         //endregion
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
     }
 }
