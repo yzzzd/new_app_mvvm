@@ -8,119 +8,139 @@
     android:padding="24dp"
     tools:context=".ui.form.input.FormInputActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/map_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/map_marker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_marker_centered"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/map_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <AutoCompleteTextView
-        android:layout_marginTop="24dp"
-        android:id="@+id/input_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Input lokasi..." />
+                <ImageView
+                    android:id="@+id/map_marker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_marker_centered"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/date_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Pilih tanggal" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/time_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Pilih jam" />
+            <AutoCompleteTextView
+                android:layout_marginTop="24dp"
+                android:id="@+id/input_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Input lokasi..." />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Accesories" />
+            <TextView
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Pilih tanggal" />
 
-    <CheckBox
-        android:id="@+id/check_acc1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Accesories 1" />
+            <TextView
+                android:id="@+id/time_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Pilih jam" />
 
-    <CheckBox
-        android:id="@+id/check_acc2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Accesories 2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Accesories" />
 
-    <CheckBox
-        android:id="@+id/check_acc3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Accesories 3" />
+            <CheckBox
+                android:id="@+id/check_acc1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accesories 1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Type" />
+            <CheckBox
+                android:id="@+id/check_acc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accesories 2" />
 
-    <RadioGroup
-        android:id="@+id/radio_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/check_acc3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accesories 3" />
 
-        <RadioButton
-            android:id="@+id/type1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type 1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Type" />
 
-        <RadioButton
-            android:id="@+id/type2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type 2" />
+            <RadioGroup
+                android:id="@+id/radio_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/type3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type 3" />
+                <RadioButton
+                    android:id="@+id/type1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type 1" />
 
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/type2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type 2" />
 
-    <!--<RatingBar
-        android:id="@+id/rating_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp" />-->
+                <RadioButton
+                    android:id="@+id/type3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type 3" />
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Simpan" />
+            </RadioGroup>
+
+            <!--<RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" />-->
+
+            <TextView
+                android:id="@+id/scan_barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Scan barcode" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Simpan" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

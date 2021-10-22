@@ -2,6 +2,8 @@ package id.nuryaz.newapp.injection
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import id.nuryaz.newapp.ui.barcode.BarcodeActivity
+import id.nuryaz.newapp.ui.barcode.BarcodeModule
 import id.nuryaz.newapp.ui.form.input.FormInputActivity
 import id.nuryaz.newapp.ui.form.input.FormInputModule
 import id.nuryaz.newapp.ui.form.list.VisitListActivity
@@ -29,4 +31,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [LoginModule::class])
     abstract fun bindLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector(modules = [BarcodeModule::class])
+    abstract fun bindBarcodeActivity(): BarcodeActivity
 }

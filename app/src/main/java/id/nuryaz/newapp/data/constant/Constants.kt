@@ -13,6 +13,7 @@ class Constants {
         const val KEY_ACC = "acc"
         const val KEY_TYPE = "type"
         const val KEY_RATING = "rating"
+        const val KEY_DATA = "data"
     }
 
     object REMOTE {
