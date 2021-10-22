@@ -1,10 +1,14 @@
 package id.nuryaz.newapp.ui.form.input
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.MapView
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -30,6 +34,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
     /*private lateinit var ratingBar: RatingBar*/
     private lateinit var buttonSave: Button
     private lateinit var mapView: MapView
+    private lateinit var mapMarker: ImageView
 
     private var valueLocation = ""
     private var valueDate = ""
@@ -37,6 +42,8 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
     private var valueAccessories = ArrayList<String>()
     private var valueType = ""
     /*private var valueRating = 0F*/
+
+    private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +59,7 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
         /*ratingBar = findViewById(R.id.rating_bar)*/
         buttonSave = findViewById(R.id.btn_save)
         mapView = findViewById(R.id.map_view)
+        mapMarker = findViewById(R.id.map_marker)
 
         mapView.onCreate(savedInstanceState)
 
@@ -139,8 +147,11 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
         }*/
 
         //regionmap
-        mapView.getMapAsync {
 
+        if (isLoacationGranted()) {
+            showLocation()
+        } else {
+            requestPermission()
         }
         //endregion
 
@@ -176,6 +187,44 @@ class FormInputActivity : BaseActivity<FormInputViewModel>() {
             dialogSave.show(supportFragmentManager, "save")
         }
         //endregion
+    }
+
+    private fun showLocation() {
+        mapView.getMapAsync { googleMap ->
+            googleMap.isMyLocationEnabled = true
+            googleMap.uiSettings.isMyLocationButtonEnabled = true
+
+            googleMap.setOnCameraMoveListener {
+                mapMarker.alpha = 0.25F
+            }
+
+            googleMap.setOnCameraIdleListener {
+                mapMarker.alpha = 1F
+                val location = googleMap.cameraPosition.target
+
+                Log.d("lokasimap", "lat: ${location.latitude} long: ${location.longitude}")
+            }
+        }
+    }
+
+    private fun isLoacationGranted() = REQUIRED_PERMISSION.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(this, REQUIRED_PERMISSION, 100)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 100) {
+            if (isLoacationGranted()) {
+                showLocation()
+            } else {
+                requestPermission()
+            }
+        }
     }
 
     override fun onResume() {
